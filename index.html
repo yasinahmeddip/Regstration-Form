@@ -1,66 +1,893 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration-form</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+JP:wght@100;300;400;500&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    
-<div class="registration-form">
-<div class="container">
-    <div class="form-box">
-    <div class="left">
-        <h1>INFORMATION</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi vitae alias minus eos veritatis repellat natus mollitia odit consectetur cum. Facere placeat eaque fugiat tenetur dignissimos hic veritatis non ullam! Lorem ipsum dolor sit amet <br>
-            <br> consectetur adipisicing elit. Reiciendis culpa ipsa laudantium veritatis numquam, est nihil impedit itaque facilis maiores exercitationem maxime optio magnam! Molestias sint aliquid cumque tempora voluptatum.   </p>
-        <button>HAVE AN ACCOUNT</button>
-    </div>
-    <div class="right">
-        <div class="box">
-        <h1>Register Form</h1>
-        <div class="name-box">
-            <div class="first">
-                <label for="">First Name</label>
-                <input type="text">
+    <title>Responsive Registration Form</title>
+
+    <!-- CSS Start from here -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Web Fonts Start from here -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Extra families for per-section styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;600;700&family=Montserrat:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;600;700&family=Open+Sans:wght@400;600;700&family=Nunito:wght@400;600;700&family=Rubik:wght@400;600;700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Web Fonts End here -->
+
+    <style>
+/* ========= Base / Desktop (>= 992px) ========= */
+:root{
+  --fs-body: 18px;
+  --lh-body: 1.7;
+
+  --fs-h1: 48px; --lh-h1: 1.2;
+  --fs-h2: 40px; --lh-h2: 1.25;
+  --fs-h3: 32px; --lh-h3: 1.3;
+  --fs-h4: 24px; --lh-h4: 1.35;
+  --fs-h5: 20px; --lh-h5: 1.4;
+  --fs-h6: 18px; --lh-h6: 1.45;
+
+  --fs-p: 18px; --lh-p: 1.75;
+  --fs-small: 14px;
+
+  --fs-btn: 16px; /* Desktop button text */
+  --btn-minh: 44px; /* Touch-friendly height */
+  --btn-pad: 0.6rem 1.2rem;
+
+  --fs-card-title: 20px;
+  --fs-card-subtitle: 16px;
+  --fs-card-text: 16px;
+
+  --section-pad: 56px; /* section vertical spacing */
+  --gap: 1rem; /* grid gap */
+}
+
+html,body{ margin:0; overflow-x: hidden; }
+body{
+  font: 400 var(--fs-body)/var(--lh-body) 'Source Sans 3', 'Noto Sans Bengali', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color:#212529;
+  /* Background Image Start from here */
+  background: url('img/1.jpg') center center / cover no-repeat fixed;
+  min-height: 100vh;
+  /* Background Image End here */
+}
+section{ padding-block: var(--section-pad); }
+img{ max-width:100%; height:auto; display:block; }
+
+h1{ font-size: var(--fs-h1); line-height: var(--lh-h1); margin:0 0 .5em; }
+h2{ font-size: var(--fs-h2); line-height: var(--lh-h2); margin:0 0 .6em; }
+h3{ font-size: var(--fs-h3); line-height: var(--lh-h3); margin:0 0 .6em; }
+h4{ font-size: var(--fs-h4); line-height: var(--lh-h4); margin:0 0 .7em; }
+h5{ font-size: var(--fs-h5); line-height: var(--lh-h5); margin:0 0 .7em; }
+h6{ font-size: var(--fs-h6); line-height: var(--lh-h6); margin:0 0 .8em; }
+p,strong{ font-weight: 700; }
+p em, em{ font-style: italic; }
+p { font-size: var(--fs-p); line-height: var(--lh-p); margin:0 0 1em; }
+small{ font-size: var(--fs-small); }
+
+.btn, .button, button{
+  font-size: var(--fs-btn);
+  line-height: 1.2;
+  min-height: var(--btn-minh);
+  padding: var(--btn-pad);
+}
+
+.card .card-title{ font-size: var(--fs-card-title); line-height: 1.35; margin-bottom:.4rem; }
+.card .card-subtitle{ font-size: var(--fs-card-subtitle); opacity:.8; margin-bottom:.5rem; }
+.card .card-text, .card p{ font-size: var(--fs-card-text); line-height: 1.7; }
+
+/* Common grid helper (optional) */
+.grid{ display:grid; gap: var(--gap); grid-template-columns: 1fr; }
+
+/* ========= Tablet (>=768px and <992px) ========= */
+@media (max-width: 991.98px){
+  :root{
+    --fs-body: 17px;
+    --fs-h1: 36px; --lh-h1: 1.2;
+    --fs-h2: 30px; --lh-h2: 1.25;
+    --fs-h3: 24px; --lh-h3: 1.3;
+    --fs-h4: 20px; --lh-h4: 1.35;
+    --fs-h5: 18px; --lh-h5: 1.4;
+    --fs-h6: 17px; --lh-h6: 1.45;
+
+    --fs-p: 16px;
+    --fs-small: 13px;
+
+    --fs-btn: 16px;
+    --btn-minh: 44px;
+
+    --fs-card-title: 18px;
+    --fs-card-subtitle: 15px;
+    --fs-card-text: 15px;
+
+    --section-pad: 48px;
+  }
+
+  .grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ========= Mobile (<768px) ========= */
+@media (max-width: 767.98px){
+  :root{
+    --fs-body: 16px;
+    --fs-h1: 28px; --lh-h1: 1.22;
+    --fs-h2: 24px; --lh-h2: 1.26;
+    --fs-h3: 20px; --lh-h3: 1.3;
+    --fs-h4: 18px; --lh-h4: 1.35;
+    --fs-h5: 16px; --lh-h5: 1.4;
+    --fs-h6: 15px; --lh-h6: 1.45;
+
+    --fs-p: 14.5px;
+    --fs-small: 12.5px;
+
+    --fs-btn: 15px;
+    --btn-minh: 44px; /* মোবাইলে ট্যাপ-সাইজ রাখছি 44px+ */
+    --btn-pad: 0.55rem 1rem;
+
+    --fs-card-title: 17px;
+    --fs-card-subtitle: 14px;
+    --fs-card-text: 14.5px;
+
+    --section-pad: 40px;
+    --gap: .9rem;
+  }
+
+  /* মোবাইলে টেক্সট সেন্টার দরকার হলে এই utility লাগাতে পারেন */
+  .text-center-sm{ text-align:center; }
+  /* মোবাইলে কার্ড/বাটনকে মাঝামাঝি রাখা */
+  .center-sm{ display:flex; justify-content:center; align-items:center; }
+
+  /* Mobile general compact form spacing */
+  .card-body{ padding: 1rem 1rem; }
+  .form-label, .form-check-label{ font-size: .9em; }
+  .form-control{ padding: .45rem .6rem; font-size: .95em; }
+  .form-text{ font-size: .8em; }
+  /* Avoid iOS issues with fixed bg on mobile */
+  body{ background-attachment: scroll; }
+}
+
+/* ========= Mobile-Large (>=576px and <768px) finer tune ========= */
+/* Mobile-L Start from here */
+@media (min-width: 576px) and (max-width: 767.98px){
+  :root{
+    --fs-body: 16.25px;
+    --fs-btn: 15.25px;
+  }
+  .card-body{ padding: 1.25rem 1.25rem; }
+  .form-label, .form-check-label{ font-size: .95em; }
+  .form-control{ padding: .5rem .7rem; font-size: .975em; }
+}
+/* Mobile-L End here */
+
+/* ========= Mobile-S (<576px) finer tune ========= */
+/* Mobile-S Start from here */
+@media (max-width: 575.98px){
+  :root{
+    --fs-body: 15.5px;
+    --fs-btn: 14.5px;
+  }
+  .card-body{ padding: .9rem; }
+}
+/* Mobile-S End here */
+
+/* ========= Optional: Navbar sticky & spacing ========= */
+header.sticky-top{ top:0; z-index:1000; }
+.nav-link{ transition: color .2s, opacity .2s; }
+.nav-link:hover{ color:#0d6efd; opacity:.85; }
+
+/* ========= Optional: Button hover variants (একই রং, ভিন্ন effect) ========= */
+.btn-variant-1:hover{ transform: translateY(-2px) scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,.08); }
+.btn-variant-2{ border-radius:.5rem; }
+.btn-variant-2:hover{ border-radius:2rem; box-shadow: 0 0 0 .25rem rgba(13,110,253,.15); }
+.btn-variant-3{ position:relative; overflow:hidden; }
+.btn-variant-3::after{
+  content:""; position:absolute; inset:0; background: rgba(255,255,255,.15);
+  clip-path: polygon(0 0,0 0,0 100%,0 100%); transition: clip-path .3s ease;
+}
+.btn-variant-3:hover::after{
+  clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+}
+
+/* ========= Cards: same hover effect everywhere ========= */
+.card-hover{ transition: transform .25s, box-shadow .25s; }
+.card-hover:hover{ transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+
+/* Form specific helpers */
+.form-help{ margin-top:.25rem; color:#6c757d; }
+.max-3-lines{ display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+    </style>
+    <!-- CSS End here -->
+  </head>
+  <body id="top">
+
+    <!-- Section Themes Start from here -->
+    <style>
+      /* Each section gets its own brand color + font */
+      #register{ --brand:#0d6efd; font-family:'Source Sans 3','Noto Sans Bengali',system-ui; }
+      #contact{ --brand:#0ea5a5; font-family:'Poppins','Noto Sans Bengali',system-ui; }
+      #payment{ --brand:#6366f1; font-family:'Inter','Noto Sans Bengali',system-ui; }
+      #appointment{ --brand:#22c55e; font-family:'Montserrat','Noto Sans Bengali',system-ui; }
+      #feedback{ --brand:#f59e0b; font-family:'Lora','Noto Sans Bengali',serif; }
+      #upload{ --brand:#8b5cf6; font-family:'Work Sans','Noto Sans Bengali',system-ui; }
+      #job{ --brand:#334155; font-family:'Roboto Slab','Noto Sans Bengali',serif; }
+      #newsletter{ --brand:#ec4899; font-family:'Open Sans','Noto Sans Bengali',system-ui; }
+      #address{ --brand:#06b6d4; font-family:'Nunito','Noto Sans Bengali',system-ui; }
+      #support{ --brand:#ef4444; font-family:'Rubik','Noto Sans Bengali',system-ui; }
+      #login{ --brand:#374151; font-family:'Playfair Display','Noto Sans Bengali',serif; }
+
+      /* Shared scoped styles using the brand variable */
+      section .card{ border-top: 4px solid var(--brand, #0d6efd); }
+      section .btn-primary{ background-color: var(--brand, #0d6efd); border-color: var(--brand, #0d6efd); }
+      section .btn-primary:hover{ background-color: var(--brand, #0d6efd); border-color: var(--brand, #0d6efd); }
+      section h1, section h2, section h3, section h4, section h5{ color:#111827; }
+      /* Optional: brand accents for links inside sections */
+      section a{ color: var(--brand, #0d6efd); }
+      section a:hover{ opacity:.85; }
+    </style>
+    <!-- Section Themes End here -->
+
+    <!-- Header/Nav Start from here -->
+    <header class="sticky-top">
+      <nav class="navbar navbar-light bg-white border-bottom py-2">
+        <div class="container">
+          <a class="navbar-brand fw-semibold" href="#top">Registration</a>
+          <ul class="navbar-nav flex-row ms-auto gap-3 flex-wrap">
+            <!-- testimonial menu must NOT exist per requirement -->
+            <li class="nav-item"><a class="nav-link" href="#register">Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="#payment">Payment</a></li>
+            <li class="nav-item"><a class="nav-link" href="#appointment">Appointment</a></li>
+            <li class="nav-item"><a class="nav-link" href="#feedback">Feedback</a></li>
+            <li class="nav-item"><a class="nav-link" href="#upload">Upload</a></li>
+            <li class="nav-item"><a class="nav-link" href="#job">Job</a></li>
+            <li class="nav-item"><a class="nav-link" href="#newsletter">Newsletter</a></li>
+            <li class="nav-item"><a class="nav-link" href="#address">Address</a></li>
+            <li class="nav-item"><a class="nav-link" href="#support">Support</a></li>
+            <li class="nav-item"><a class="nav-link" href="#login">Login</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Header/Nav End here -->
+
+    <!-- Registration Form Start from here -->
+    <main>
+      <section id="register">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+              <div class="card shadow-sm card-hover">
+                <div class="card-body p-4 p-md-5">
+                  <h1 class="h2 text-center-sm mb-4">Create Your Account</h1>
+
+                  <form class="needs-validation" novalidate>
+                    <div class="row g-2 g-sm-3 form-grid">
+                      <div class="col-6 col-md-6">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="John" required>
+                        <div class="invalid-feedback">Please enter your first name.</div>
+                      </div>
+                      <div class="col-6 col-md-6">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Doe" required>
+                        <div class="invalid-feedback">Please enter your last name.</div>
+                      </div>
+
+                      <div class="col-6 col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                        <div class="invalid-feedback">Enter a valid email.</div>
+                      </div>
+                      <div class="col-6 col-md-6">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="01xxxxxxxxx" pattern="[0-9]{11}" required>
+                        <div class="form-text form-help max-3-lines">Use 11 digits, numbers only.</div>
+                        <div class="invalid-feedback">Provide 11-digit phone number.</div>
+                      </div>
+
+                      <div class="col-6 col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" minlength="6" required>
+                        <div class="invalid-feedback">Minimum 6 characters.</div>
+                      </div>
+                      <div class="col-6 col-md-6">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" minlength="6" required>
+                        <div class="invalid-feedback">Passwords must match.</div>
+                      </div>
+
+                      <div class="col-6 col-md-6">
+                        <label class="form-label d-block">Gender</label>
+                        <div class="d-flex gap-2 flex-nowrap align-items-center">
+                          <div class="form-check form-check-inline mb-0">
+                            <input class="form-check-input" type="radio" name="gender" id="genderM" value="male" required>
+                            <label class="form-check-label" for="genderM">Male</label>
+                          </div>
+                          <div class="form-check form-check-inline mb-0">
+                            <input class="form-check-input" type="radio" name="gender" id="genderF" value="female" required>
+                            <label class="form-check-label" for="genderF">Female</label>
+                          </div>
+                          <div class="form-check form-check-inline mb-0">
+                            <input class="form-check-input" type="radio" name="gender" id="genderO" value="other" required>
+                            <label class="form-check-label" for="genderO">Other</label>
+                          </div>
+                        </div>
+                        <div class="invalid-feedback d-block">Please select gender.</div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" required>
+                        <div class="invalid-feedback">Select your date of birth.</div>
+                      </div>
+
+                      <div class="col-6 col-md-12">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="House, Road, Area" required>
+                        <div class="invalid-feedback">Please provide your address.</div>
+                      </div>
+
+                      <div class="col-6 col-md-6 col-lg-4">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" required>
+                        <div class="invalid-feedback">City is required.</div>
+                      </div>
+                      <div class="col-6 col-md-6 col-lg-4">
+                        <label for="state" class="form-label">State/Division</label>
+                        <input type="text" class="form-control" id="state" required>
+                        <div class="invalid-feedback">State/Division required.</div>
+                      </div>
+                      <div class="col-6 col-md-6 col-lg-4">
+                        <label for="zip" class="form-label">ZIP/Postal</label>
+                        <input type="text" class="form-control" id="zip" pattern="[0-9]{4,6}" required>
+                        <div class="invalid-feedback">Provide 4–6 digit code.</div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="terms" required>
+                          <label class="form-check-label" for="terms">
+                            I agree to the Terms & Conditions
+                          </label>
+                          <div class="invalid-feedback">You must agree before submitting.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex gap-2 gap-md-3 mt-4 center-sm">
+                      <button type="submit" class="btn btn-primary btn-variant-1 px-4">Register</button>
+                      <button type="reset" class="btn btn-primary btn-variant-2 px-4">Reset</button>
+                      <!-- Example third button using another effect but same color -->
+                      <button type="button" class="btn btn-primary btn-variant-3 d-none d-md-inline px-4">Help</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-        <div class="last">
-            <label for="">Last Name</label>
-            <input type="text">
+          </div>
         </div>
-        </div>
-        <div class="gmail-box">
-            <label for="">Your Gmail</label>
-            <input type="gmail">
-        </div>
-        <div class="password-box">
-            <div class="first">
-                <label for="">password</label>
-                <input type="password">
+      </section>
+    </main>
+    <!-- Registration Form End here -->
+
+    <!-- Contact Form Start from here -->
+    <section id="contact">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm card-hover">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h3 text-center-sm mb-4">Contact Form</h2>
+                <form class="needs-validation" novalidate>
+                  <div class="row g-2 g-sm-3">
+                    <div class="col-6">
+                      <label for="cName" class="form-label">Your Name</label>
+                      <input type="text" id="cName" class="form-control" required>
+                      <div class="invalid-feedback">Name is required.</div>
+                    </div>
+                    <div class="col-6">
+                      <label for="cEmail" class="form-label">Email</label>
+                      <input type="email" id="cEmail" class="form-control" required>
+                      <div class="invalid-feedback">Valid email required.</div>
+                    </div>
+                    <div class="col-12">
+                      <label for="cSubject" class="form-label">Subject</label>
+                      <input type="text" id="cSubject" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="cMessage" class="form-label">Message</label>
+                      <textarea id="cMessage" class="form-control" rows="4" required></textarea>
+                      <div class="invalid-feedback">Please enter a message.</div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4 center-sm">
+                    <button class="btn btn-primary btn-variant-2 px-4" type="submit">Send Message</button>
+                  </div>
+                </form>
+              </div>
             </div>
-        <div class="last">
-            <label for="">Confirm password</label>
-            <input type="password">
+          </div>
         </div>
+      </div>
+    </section>
+    <!-- Contact Form End here -->
+
+    <!-- Payment Form Start from here -->
+    <section id="payment">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm card-hover">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h3 text-center-sm mb-4">Payment Form</h2>
+                <form class="needs-validation" novalidate>
+                  <div class="row g-2 g-sm-3">
+                    <div class="col-12">
+                      <label for="cardName" class="form-label">Name on Card</label>
+                      <input type="text" id="cardName" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="cardNumber" class="form-label">Card Number</label>
+                      <input type="text" id="cardNumber" class="form-control" inputmode="numeric" pattern="[0-9\s]{12,19}" placeholder="1234 5678 9012 3456" required>
+                      <div class="form-text form-help">No dashes; spaces allowed.</div>
+                    </div>
+                    <div class="col-6">
+                      <label for="exp" class="form-label">Expiry</label>
+                      <input type="month" id="exp" class="form-control" required>
+                    </div>
+                    <div class="col-6">
+                      <label for="cvv" class="form-label">CVV</label>
+                      <input type="password" id="cvv" class="form-control" inputmode="numeric" pattern="[0-9]{3,4}" required>
+                    </div>
+                    <div class="col-6">
+                      <label for="country" class="form-label">Country</label>
+                      <select id="country" class="form-select" required>
+                        <option value="" selected disabled>Choose...</option>
+                        <option>Bangladesh</option>
+                        <option>India</option>
+                        <option>USA</option>
+                        <option>UK</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label for="zip2" class="form-label">ZIP</label>
+                      <input type="text" id="zip2" class="form-control" pattern="[0-9]{4,6}" required>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4 center-sm">
+                    <button class="btn btn-primary btn-variant-1 px-4" type="submit">Pay Now</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="checkbox-box">
-            <input type="checkbox">
-            <span>I agree to the <a href="">Terms & Conditions</a> </span>
-            <button>Register</button>
+      </div>
+    </section>
+    <!-- Payment Form End here -->
+
+    <!-- Appointment Form Start from here -->
+    <section id="appointment">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm card-hover">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h3 text-center-sm mb-4">Appointment Form</h2>
+                <form class="needs-validation" novalidate>
+                  <div class="row g-2 g-sm-3">
+                    <div class="col-6">
+                      <label for="service" class="form-label">Service</label>
+                      <select id="service" class="form-select" required>
+                        <option value="" selected disabled>Select service</option>
+                        <option>Consultation</option>
+                        <option>Checkup</option>
+                        <option>Follow-up</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label for="apptDate" class="form-label">Date</label>
+                      <input type="date" id="apptDate" class="form-control" required>
+                    </div>
+                    <div class="col-6">
+                      <label for="apptTime" class="form-label">Time</label>
+                      <input type="time" id="apptTime" class="form-control" required>
+                    </div>
+                    <div class="col-6">
+                      <label for="mode" class="form-label">Mode</label>
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="mode" id="inperson" required>
+                          <label class="form-check-label" for="inperson">In-person</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="mode" id="online" required>
+                          <label class="form-check-label" for="online">Online</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label for="apptNotes" class="form-label">Notes</label>
+                      <textarea id="apptNotes" class="form-control" rows="3" placeholder="Anything we should know?"></textarea>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4 center-sm">
+                    <button class="btn btn-primary btn-variant-3 px-4" type="submit">Book</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-</div>
-</div>
-</div>
+      </div>
+    </section>
+    <!-- Appointment Form End here -->
 
+    <!-- Feedback Form Start from here -->
+    <section id="feedback">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm card-hover">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h3 text-center-sm mb-4">Feedback Form</h2>
+                <form class="needs-validation" novalidate>
+                  <div class="row g-2 g-sm-3">
+                    <div class="col-12">
+                      <label class="form-label d-block">Rating</label>
+                      <div class="d-flex gap-3">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="rating" id="r1" required>
+                          <label class="form-check-label" for="r1">1</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="rating" id="r2" required>
+                          <label class="form-check-label" for="r2">2</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="rating" id="r3" required>
+                          <label class="form-check-label" for="r3">3</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="rating" id="r4" required>
+                          <label class="form-check-label" for="r4">4</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="rating" id="r5" required>
+                          <label class="form-check-label" for="r5">5</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label for="fbMessage" class="form-label">Comments</label>
+                      <textarea id="fbMessage" class="form-control" rows="3" required></textarea>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4 center-sm">
+                    <button class="btn btn-primary btn-variant-1 px-4" type="submit">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Feedback Form End here -->
 
-</div>
+    <!-- File Upload Form Start from here -->
+    <section id="upload">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm card-hover">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h3 text-center-sm mb-4">File Upload Form</h2>
+                <form class="needs-validation" novalidate>
+                  <div class="row g-2 g-sm-3">
+                    <div class="col-12">
+                      <label for="uTitle" class="form-label">Title</label>
+                      <input id="uTitle" type="text" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="uFile" class="form-label">Upload Files</label>
+                      <input id="uFile" type="file" class="form-control" multiple required>
+                      <div class="form-text">Max 10MB each. PDF, JPG, PNG.</div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4 center-sm">
+                    <button class="btn btn-primary btn-variant-2 px-4" type="submit">Upload</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- File Upload Form End here -->
 
+    <!-- Job Application Form Start from here -->
+    <section id="job">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm card-hover">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h3 text-center-sm mb-4">Job Application Form</h2>
+                <form class="needs-validation" novalidate>
+                  <div class="row g-2 g-sm-3">
+                    <div class="col-6">
+                      <label for="position" class="form-label">Position</label>
+                      <select id="position" class="form-select" required>
+                        <option value="" disabled selected>Select role</option>
+                        <option>Frontend Developer</option>
+                        <option>Backend Developer</option>
+                        <option>Designer</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label for="expYears" class="form-label">Experience (years)</label>
+                      <input id="expYears" type="number" min="0" max="40" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="resume" class="form-label">Resume (PDF)</label>
+                      <input id="resume" type="file" accept="application/pdf" class="form-control" required>
+                    </div>
+                    <div class="col-6">
+                      <label for="portfolio" class="form-label">Portfolio URL</label>
+                      <input id="portfolio" type="url" class="form-control">
+                    </div>
+                    <div class="col-6">
+                      <label for="linkedin" class="form-label">LinkedIn</label>
+                      <input id="linkedin" type="url" class="form-control">
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4 center-sm">
+                    <button class="btn btn-primary btn-variant-3 px-4" type="submit">Apply</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Job Application Form End here -->
 
+    <!-- Newsletter Form Start from here -->
+    <section id="newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm card-hover">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h3 text-center-sm mb-4">Newsletter Signup</h2>
+                <form class="needs-validation" novalidate>
+                  <div class="row g-2 g-sm-3">
+                    <div class="col-12 col-md-8">
+                      <label for="newsEmail" class="form-label">Email</label>
+                      <input id="newsEmail" type="email" class="form-control" required>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <label for="frequency" class="form-label">Frequency</label>
+                      <select id="frequency" class="form-select" required>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label d-block">Interests</label>
+                      <div class="d-flex flex-wrap gap-3">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="int1">
+                          <label class="form-check-label" for="int1">Tech</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="int2">
+                          <label class="form-check-label" for="int2">Design</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="int3">
+                          <label class="form-check-label" for="int3">Marketing</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4 center-sm">
+                    <button class="btn btn-primary btn-variant-1 px-4" type="submit">Subscribe</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Newsletter Form End here -->
 
-</body>
+    <!-- Address Form Start from here -->
+    <section id="address">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm card-hover">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h3 text-center-sm mb-4">Address Form</h2>
+                <form class="needs-validation" novalidate>
+                  <div class="row g-2 g-sm-3">
+                    <div class="col-12">
+                      <label for="aLine1" class="form-label">Address Line 1</label>
+                      <input id="aLine1" type="text" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="aLine2" class="form-label">Address Line 2</label>
+                      <input id="aLine2" type="text" class="form-control">
+                    </div>
+                    <div class="col-6">
+                      <label for="aCity" class="form-label">City</label>
+                      <input id="aCity" type="text" class="form-control" required>
+                    </div>
+                    <div class="col-6">
+                      <label for="aState" class="form-label">State/Division</label>
+                      <input id="aState" type="text" class="form-control" required>
+                    </div>
+                    <div class="col-6">
+                      <label for="aCountry" class="form-label">Country</label>
+                      <select id="aCountry" class="form-select" required>
+                        <option value="" selected disabled>Choose...</option>
+                        <option>Bangladesh</option>
+                        <option>India</option>
+                        <option>USA</option>
+                        <option>UK</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label for="aZip" class="form-label">ZIP/Postal</label>
+                      <input id="aZip" type="text" class="form-control" pattern="[0-9]{4,6}" required>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4 center-sm">
+                    <button class="btn btn-primary btn-variant-2 px-4" type="submit">Save Address</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Address Form End here -->
+
+    <!-- Support Ticket Form Start from here -->
+    <section id="support">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm card-hover">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h3 text-center-sm mb-4">Support Ticket</h2>
+                <form class="needs-validation" novalidate>
+                  <div class="row g-2 g-sm-3">
+                    <div class="col-6">
+                      <label for="sCategory" class="form-label">Category</label>
+                      <select id="sCategory" class="form-select" required>
+                        <option value="" disabled selected>Select</option>
+                        <option>Billing</option>
+                        <option>Technical</option>
+                        <option>General</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label d-block">Priority</label>
+                      <div class="d-flex gap-3">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="priority" id="low" required>
+                          <label class="form-check-label" for="low">Low</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="priority" id="med" required>
+                          <label class="form-check-label" for="med">Medium</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="priority" id="high" required>
+                          <label class="form-check-label" for="high">High</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label for="sDesc" class="form-label">Description</label>
+                      <textarea id="sDesc" class="form-control" rows="4" required></textarea>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4 center-sm">
+                    <button class="btn btn-primary btn-variant-3 px-4" type="submit">Submit Ticket</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Support Ticket Form End here -->
+
+    <!-- Login Form Start from here -->
+    <section id="login">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 col-xl-5">
+            <div class="card shadow-sm card-hover">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h3 text-center-sm mb-4">Login</h2>
+                <form class="needs-validation" novalidate>
+                  <div class="row g-2 g-sm-3">
+                    <div class="col-12">
+                      <label for="loginEmail" class="form-label">Email</label>
+                      <input id="loginEmail" type="email" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="loginPassword" class="form-label">Password</label>
+                      <input id="loginPassword" type="password" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="remember">
+                        <label class="form-check-label" for="remember">Remember me</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4 center-sm">
+                    <button class="btn btn-primary btn-variant-1 px-4" type="submit">Login</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Login Form End here -->
+
+    <!-- JavaScript Start from here -->
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+      // Basic client-side validation for all forms
+      (() => {
+        const forms = document.querySelectorAll('.needs-validation');
+        forms.forEach((form) => {
+          // Registration confirm password check (only if fields exist in this form)
+          const pass = form.querySelector('#password');
+          const confirm = form.querySelector('#confirmPassword');
+          const validateMatch = () => {
+            if (confirm && pass && confirm.value && pass.value !== confirm.value) {
+              confirm.setCustomValidity('Passwords do not match');
+            } else if (confirm) {
+              confirm.setCustomValidity('');
+            }
+          };
+          if (pass && confirm) {
+            pass.addEventListener('input', validateMatch);
+            confirm.addEventListener('input', validateMatch);
+          }
+
+          form.addEventListener('submit', (event) => {
+            validateMatch();
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      })();
+    </script>
+    <!-- JavaScript End here -->
+  </body>
 </html>
